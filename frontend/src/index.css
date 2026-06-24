@@ -1,0 +1,203 @@
+@import "tailwindcss";
+
+/* ===== Custom Theme ===== */
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+
+  /* Primary = White/off-white family */
+  --color-primary-50: #FFFFFF;
+  --color-primary-100: #FFFFFF; /* User's Primary (White) */
+  --color-primary-200: #F5F3EF;
+  --color-primary-300: #8B5E3C; /* Medium brown text highlight */
+  --color-primary-400: #70482B;
+  --color-primary-500: #8B5E3C; /* User's Secondary */
+  --color-primary-600: #70482B;
+  --color-primary-700: #5A3720;
+  --color-primary-800: #452715;
+  --color-primary-900: #2E180B;
+
+  /* Purple = Warm amber/orange accent family (#D97706) */
+  --color-purple-50: #FFFDF5;
+  --color-purple-100: #FEF3C7;
+  --color-purple-200: #FDE68A;
+  --color-purple-300: #FCD34D;
+  --color-purple-400: #F59E0B;
+  --color-purple-500: #D97706; /* User's Accent */
+  --color-purple-600: #B45309;
+  --color-purple-700: #92400E;
+  --color-purple-800: #78350F;
+  --color-purple-900: #451A03;
+
+  /* Red = Retro rust/burnt orange family for alerts or deletes */
+  --color-red-50: #FFF5F5;
+  --color-red-100: #FFE3E3;
+  --color-red-200: #FFC9C9;
+  --color-red-300: #FFA8A8;
+  --color-red-400: #FF8787;
+  --color-red-500: #C2410C;
+  --color-red-600: #9A3412;
+  --color-red-700: #7C2D12;
+  --color-red-800: #431407;
+  --color-red-900: #2D0800;
+
+  /* Slate = Redefined to map dark-mode classes directly to a white-primary warm layout */
+  --color-slate-50: #120A04;   /* Deepest dark text */
+  --color-slate-100: #201208;  /* Body text (deep dark brown) */
+  --color-slate-200: #2E1B0E;  /* Secondary text */
+  --color-slate-300: #3D2513;  /* Regular text */
+  --color-slate-400: #553922;  /* Muted text */
+  --color-slate-500: #704E35;  /* Placeholders / subtle borders */
+  --color-slate-600: #8B5E3C;  /* Brown elements */
+  --color-slate-700: #DFDAD0;  /* Soft warm grey border */
+  --color-slate-800: #EBE8E2;  /* Soft warm grey card background */
+  --color-slate-850: #F5F3EF;  /* Input field background */
+  --color-slate-900: #FFFFFF;  /* The main retro page background (Pure White) */
+  --color-slate-950: #FAF9F6;  /* Deep warm background overlays */
+
+  /* White & custom overrides for retro legibility */
+  --color-white: #2C1A10;      /* Override white to deep brown for readable content */
+  
+  --color-surface-50: #FFFFFF;
+  --color-surface-100: #F5F3EF;
+  --color-surface-200: #EBE8E2;
+  --color-surface-700: #8B5E3C;
+  --color-surface-800: #70482B;
+  --color-surface-900: #5A3720;
+  --color-surface-950: #2C1A10;
+}
+
+/* ===== Base Styles ===== */
+@layer base {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #8B5E3C transparent;
+  }
+
+  body {
+    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    background-color: #FFFFFF;
+    color: #2C1A10;
+    min-height: 100vh;
+  }
+
+  ::selection {
+    background-color: #D97706;
+    color: #FAF5EB;
+  }
+}
+
+/* ===== Glass Card ===== */
+.glass {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(139, 94, 60, 0.15);
+}
+
+.glass-hover:hover {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(139, 94, 60, 0.3);
+  box-shadow: 0 8px 32px rgba(217, 119, 6, 0.1);
+}
+
+/* ===== Gradient Text ===== */
+.gradient-text {
+  background: linear-gradient(135deg, #8B5E3C 0%, #D97706 50%, #B45309 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ===== Gradient Border ===== */
+.gradient-border {
+  position: relative;
+  border-radius: 1rem;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, #8B5E3C, #D97706, #B45309);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* ===== Animations ===== */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(217, 119, 6, 0.15); }
+  50% { box-shadow: 0 0 40px rgba(217, 119, 6, 0.35); }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out forwards;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.6s ease-out forwards;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* Staggered children animation */
+.stagger-children > * {
+  opacity: 0;
+  animation: fade-in 0.4s ease-out forwards;
+}
+
+.stagger-children > *:nth-child(1) { animation-delay: 0.05s; }
+.stagger-children > *:nth-child(2) { animation-delay: 0.1s; }
+.stagger-children > *:nth-child(3) { animation-delay: 0.15s; }
+.stagger-children > *:nth-child(4) { animation-delay: 0.2s; }
+.stagger-children > *:nth-child(5) { animation-delay: 0.25s; }
+.stagger-children > *:nth-child(6) { animation-delay: 0.3s; }
+.stagger-children > *:nth-child(7) { animation-delay: 0.35s; }
+.stagger-children > *:nth-child(8) { animation-delay: 0.4s; }
+.stagger-children > *:nth-child(9) { animation-delay: 0.45s; }
+
+/* ===== Custom Toastify ===== */
+:root {
+  --toastify-color-dark: #FAF5EB;
+  --toastify-color-success: #D97706;
+  --toastify-color-error: #C2410C;
+  --toastify-color-warning: #D97706;
+  --toastify-color-info: #8B5E3C;
+  --toastify-text-color-dark: #2C1A10;
+}
+
+/* ===== Scrollbar Chrome/Safari ===== */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #C8B38E;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #8B5E3C;
+}
+
