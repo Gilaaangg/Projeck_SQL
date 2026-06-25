@@ -8,11 +8,6 @@
 -- setup manual database tanpa menunggu sequelize.sync().
 -- =========================================================
 
-CREATE DATABASE IF NOT EXISTS repo_karya_ilmiah
-  CHARACTER SET utf8mb4
-  COLLATE utf8mb4_unicode_ci;
-
-USE repo_karya_ilmiah;
 
 -- =========================================================
 -- TABEL: users

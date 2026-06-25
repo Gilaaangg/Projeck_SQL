@@ -11,7 +11,7 @@
 --   NPM: 0012345678  | Password: 09021985 | Dr. Budi Hartono, M.Kom.
 -- =========================================================
 
-USE repo_karya_ilmiah;
+
 
 INSERT INTO users (npm, nama, tanggal_lahir, password, role, prodi, jurusan, created_at)
 VALUES
