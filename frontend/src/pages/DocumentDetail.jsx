@@ -63,9 +63,10 @@ export default function DocumentDetail() {
 
   const isOwner = isAuthenticated && user && doc.uploaded_by === user.id;
   const isPdf = doc.file_name?.toLowerCase().endsWith('.pdf');
-  const fileUrl = `http://localhost:5000/${doc.file_path}`;
-  const downloadUrl = `http://localhost:5000/api/documents/${doc.id}/download`;
+const BACKEND_URL = import.meta.env.VITE_API_URL;
 
+const fileUrl = `${BACKEND_URL}/${doc.file_path}`;
+const downloadUrl = `${BACKEND_URL}/api/documents/${doc.id}/download`;
   const handleDelete = async () => {
     setDeleting(true);
     try {
